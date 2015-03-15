@@ -8,7 +8,7 @@ public class TranslateUtils
 {
 	public static String translate( String key, Object... args )
 	{
-		return StatCollector.translateToLocalFormatted( key, args );
+		return args.length == 0 ? StatCollector.translateToLocal( key ) : StatCollector.translateToLocalFormatted( key, args );
 	}
 	
 	public static void chat( EntityPlayer player, String key, Object... args )
