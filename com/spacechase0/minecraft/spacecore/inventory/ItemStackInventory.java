@@ -84,6 +84,15 @@ public abstract class ItemStackInventory implements IInventory
 		stacks[ slot ] = stack;
 		markDirty();
 	}
+	
+	@Override
+	public void clear()
+	{
+		for ( int i = 0; i < stacks.length; ++i )
+		{
+			stacks[ i ] = null;
+		}
+	}
 
 	@Override
 	public void markDirty()
@@ -143,12 +152,12 @@ public abstract class ItemStackInventory implements IInventory
 	}
 
 	@Override
-	public void openInventory()
+	public void openInventory( EntityPlayer player )
 	{
 	}
 
 	@Override
-	public void closeInventory()
+	public void closeInventory( EntityPlayer player )
 	{
 	}
 

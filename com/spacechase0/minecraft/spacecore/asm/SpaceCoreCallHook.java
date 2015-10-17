@@ -2,7 +2,7 @@ package com.spacechase0.minecraft.spacecore.asm;
 
 import java.util.Map;
 
-import cpw.mods.fml.relauncher.IFMLCallHook;
+import net.minecraftforge.fml.relauncher.IFMLCallHook;
 
 public class SpaceCoreCallHook implements IFMLCallHook
 {

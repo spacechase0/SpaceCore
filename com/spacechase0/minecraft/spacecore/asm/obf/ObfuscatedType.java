@@ -1,6 +1,5 @@
 package com.spacechase0.minecraft.spacecore.asm.obf;
 
-import cpw.mods.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 
 public class ObfuscatedType
 {

@@ -5,20 +5,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.LanguageRegistry;
 
-import com.spacechase0.minecraft.spacecore.asm.obf.ObfuscationUtils;
 import com.spacechase0.minecraft.spacecore.block.Blocks;
 import com.spacechase0.minecraft.spacecore.item.Items;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public abstract class BaseMod
 {
@@ -35,7 +31,6 @@ public abstract class BaseMod
 		setSubClassField( "items" );
 	}
 	
-	// You still have to override these methods, because @EventHandler only checks that class :(
 	@EventHandler
 	public void preInit( FMLPreInitializationEvent event )
 	{

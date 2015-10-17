@@ -1,27 +1,16 @@
 package com.spacechase0.minecraft.spacecore;
 
-import com.spacechase0.minecraft.spacecore.config.AutoConfig;
-import com.spacechase0.minecraft.spacecore.craftableenchantmentbooks.CraftableEnchantedBooks;
-import com.spacechase0.minecraft.spacecore.item.CoreItems;
-import com.spacechase0.minecraft.spacecore.network.PacketCodec;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLModIdMappingEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
+import com.spacechase0.minecraft.spacecore.config.AutoConfig;
+
+// 0.8 - Cleaned up a lot (ie. removed a bunch). Updated for Minecraft 1.8.
 // 0.7.13 - Temporarily disabled config gui (crashes when selected on mods screen, and LunatriusCore).
 // 0.7.12 - Translate utils crash fix.
 // 0.7.11 - More model path fixes.
@@ -92,7 +81,6 @@ public class SpaceCore extends BaseMod
 	}
 	
 	public static Configuration config;
-	public static CoreItems items;
 	
 	private StarterItemEventHandler starterItemHandler;
 }

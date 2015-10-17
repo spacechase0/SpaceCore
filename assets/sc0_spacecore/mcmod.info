@@ -1,0 +1,21 @@
+[
+{
+  "modid": "SC0_SpaceCore",
+  "name": "SpaceCore",
+  "description": "Common stuff for spacechase0's mods.",
+  "version": "0.8",
+  "mcversion": "1.8",
+  "url": "http://spacechase0.com/mods/minecraft/spacecore/",
+  "updateUrl": "",
+  "authorList": [
+    "spacechase0"
+  ],
+  "credits": "spacechase0",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]

@@ -28,6 +28,7 @@ public class MinecraftLogin
 {
 	public static String getAccessToken( File file, String uuid )
 	{
+		if(true)return "FML"; // TODO stuff
 		BufferedReader buffer = null;
 		try
 		{

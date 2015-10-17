@@ -78,17 +78,17 @@ public class ModInitTransformer implements IClassTransformer
         
         if ( !hasPre )
         {
-        	addEventMethod( classNode, "preInit", "cpw/mods/fml/common/event/FMLPreInitializationEvent" );
+        	addEventMethod( classNode, "preInit", "net/minecraftforge/fml/common/event/FMLPreInitializationEvent" );
         }
         
         if ( !hasInit )
         {
-        	addEventMethod( classNode, "init", "cpw/mods/fml/common/event/FMLInitializationEvent" );
+        	addEventMethod( classNode, "init", "net/minecraftforge/fml/common/event/FMLInitializationEvent" );
         }
         
         if ( !hasPost )
         {
-        	addEventMethod( classNode, "postInit", "cpw/mods/fml/common/event/FMLPostInitializationEvent" );
+        	addEventMethod( classNode, "postInit", "net/minecraftforge/fml/common/event/FMLPostInitializationEvent" );
         }
     }
     
@@ -98,7 +98,7 @@ public class ModInitTransformer implements IClassTransformer
     	
     	String desc = "(L" + type + ";)V";
     	MethodNode method = new MethodNode( ACC_PUBLIC, name, desc, null, null );
-    	method.visitAnnotation( "Lcpw/mods/fml/common/Mod$EventHandler;", true );
+    	method.visitAnnotation( "Lnet/minecraftforge/fml/common/Mod$EventHandler;", true );
     	
     	method.instructions.add( new VarInsnNode( ALOAD, 0 ) );
     	method.instructions.add( new VarInsnNode( ALOAD, 1 ) );

@@ -1,10 +1,7 @@
 package com.spacechase0.minecraft.spacecore.asm;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import cpw.mods.fml.relauncher.FMLRelaunchLog;
 
 public class SpaceCoreLog
 {

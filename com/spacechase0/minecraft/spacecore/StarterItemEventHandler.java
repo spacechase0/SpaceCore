@@ -8,10 +8,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.spacechase0.minecraft.spacecore.entity.PlayerUtils;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class StarterItemEventHandler
 {

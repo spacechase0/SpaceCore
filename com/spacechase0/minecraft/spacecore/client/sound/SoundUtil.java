@@ -8,6 +8,6 @@ public class SoundUtil
 {
 	public static void playSound( String name )
 	{
-		Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation(name), 1.0F));
+		Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation(name), 1.0F));
 	}
 }

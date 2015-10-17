@@ -1,16 +1,12 @@
 package com.spacechase0.minecraft.spacecore.client.gui;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import com.spacechase0.minecraft.spacecore.client.sound.SoundUtil;
 import com.spacechase0.minecraft.spacecore.util.ClientUtils;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class NumberGui extends Gui
 {

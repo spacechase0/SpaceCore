@@ -1,11 +1,11 @@
 package com.spacechase0.minecraft.spacecore.util;
 
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.lwjgl.opengl.GL11;
 
 @SideOnly( Side.CLIENT )
 public class ClientUtils
@@ -15,28 +15,18 @@ public class ClientUtils
 		Minecraft.getMinecraft().renderEngine.bindTexture( new ResourceLocation( str ) );
 	}
 	
-	public static void bindTexture( int id )
-	{
-		GL11.glBindTexture( GL11.GL_TEXTURE_2D, id );
-	}
-	
-	public static void bindItemTexture( int num)
-	{
-		Minecraft.getMinecraft().renderEngine.bindTexture( Minecraft.getMinecraft().renderEngine.getResourceLocation( num ) );
-	}
-	
 	public static void drawString( String str, int x, int y, int col )
 	{
-		Minecraft.getMinecraft().fontRenderer.drawString( str, x, y, col );
+		Minecraft.getMinecraft().fontRendererObj.drawString( str, x, y, col );
 	}
 	
 	public static int getStringWidth( String str )
 	{
-		return Minecraft.getMinecraft().fontRenderer.getStringWidth( str );
+		return Minecraft.getMinecraft().fontRendererObj.getStringWidth( str );
 	}
 
 	public static void drawSplitString( String str, int x, int y, int w, int col )
 	{
-		Minecraft.getMinecraft().fontRenderer.drawSplitString( str, x, y, w, col );
+		Minecraft.getMinecraft().fontRendererObj.drawSplitString( str, x, y, w, col );
 	}
 }

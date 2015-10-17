@@ -77,7 +77,7 @@ public class ObfuscationUtils
 			// Cache SRG -> MCP names, since packaged.srg does not have them.
 			Map< String, String > srgToMcp = new HashMap< String, String >();
 			{
-				InputStream stream = ObfuscationUtils.class.getResourceAsStream( "/assets/spacecore/data/mcp/mcp-srg.srg" );
+				InputStream stream = ObfuscationUtils.class.getResourceAsStream( "/assets/sc0_spacecore/data/mcp/mcp-srg.srg" );
 				InputStreamReader reader = new InputStreamReader( stream );
 				BufferedReader buffer = new BufferedReader( reader );
 				
@@ -115,7 +115,7 @@ public class ObfuscationUtils
 			
 			// Pass 1, obf/srg names
 			{
-				InputStream stream = ObfuscationUtils.class.getResourceAsStream( "/assets/spacecore/data/mcp/packaged.srg" );
+				InputStream stream = ObfuscationUtils.class.getResourceAsStream( "/assets/sc0_spacecore/data/mcp/notch-srg.srg" );
 				InputStreamReader reader = new InputStreamReader( stream );
 				BufferedReader buffer = new BufferedReader( reader );
 				

@@ -4,54 +4,30 @@ import java.lang.reflect.Field;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockFurnace;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 import com.spacechase0.minecraft.spacecore.tileentity.CustomSmelterTileEntity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-public abstract class CustomSmelterBlock extends BlockFurnace
+public abstract class CustomSmelterBlock extends BlockContainer
 {
-	public CustomSmelterBlock( boolean theActive )
+	public CustomSmelterBlock( Material mat )
 	{
-		super( theActive );
-		active = theActive;
-		
-		//setUnlocalizedName( "kiln" );
+		super( mat );
 	}
 	
-	public abstract String getIconBase();
-
 	@Override
-	@SideOnly( Side.CLIENT )
-    public void registerBlockIcons( IIconRegister register )
-    {
-		mainIcon = register.registerIcon( getIconBase() + ":" + getUnlocalizedName().substring( 5 ) + ( active ? "Active" : "Idle" ) );
-    }
-	
-	@Override
-    public IIcon getIcon( int side, int meta )
-    {
-        return ( side != meta ? this.blockIcon : this.mainIcon );
-    }
-	
-	@Override
-    public Item getItemDropped(int par1, Random par2Random, int par3)
-    {
-        return Item.getItemFromBlock( getIdleBlock() );
-    }
-	
-	@Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float par7, float par8, float par9)
     {
         if ( world.isRemote )
         {
@@ -59,17 +35,16 @@ public abstract class CustomSmelterBlock extends BlockFurnace
         }
         else
         {
-        	openGui( world, x, y, z, player );
-
+        	openGui( world, pos, player );
             return true;
         }
     }
 	
 	@Override
-    public void breakBlock(World world, int x, int y, int z, Block par5, int par6)
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-		CustomSmelterTileEntity smelter = ( CustomSmelterTileEntity ) world.getTileEntity(x, y, z);
-        if ( smelter == null || getKeepFurnaceInventory() )
+		CustomSmelterTileEntity smelter = ( CustomSmelterTileEntity ) world.getTileEntity( pos );
+        if ( smelter == null )
         {
         	return;
         }
@@ -85,7 +60,7 @@ public abstract class CustomSmelterBlock extends BlockFurnace
                 float fy = rand.nextFloat() * 0.8F + 0.1F;
                 float fz = rand.nextFloat() * 0.8F + 0.1F;
                 
-        		EntityItem entity = new EntityItem( world, (double)((float)x + fx), (double)((float)y + fy), (double)((float)z + fz), stack.copy());
+        		EntityItem entity = new EntityItem( world, (double)((float)pos.getX() + fx), (double)((float)pos.getY() + fy), (double)((float)pos.getZ() + fz), stack.copy());
         		
                 float f3 = 0.05F;
                 entity.motionX = (double)((float)rand.nextGaussian() * f3);
@@ -98,81 +73,24 @@ public abstract class CustomSmelterBlock extends BlockFurnace
         	}
     	}
     	
-    	world.removeTileEntity( x, y, z );
+    	world.updateComparatorOutputLevel( pos, this );
+    	super.breakBlock( world, pos, state );
 	}
+
+	@Override
+    public boolean hasComparatorInputOverride()
+    {
+        return true;
+    }
+	
+	@Override
+    public int getComparatorInputOverride(World worldIn, BlockPos pos)
+    {
+        return Container.calcRedstone(worldIn.getTileEntity(pos));
+    }
 	
 	//@Override
 	public abstract TileEntity createNewTileEntity( World world, int i );
 	
-	//@Override
-    public static void updateBlockState( boolean burning, World world, int x, int y, int z )
-    {
-        int meta = world.getBlockMetadata( x, y, z );
-        TileEntity entity = world.getTileEntity( x, y, z );
-        setKeepFurnaceInventory( true );
-
-        CustomSmelterBlock block = ( CustomSmelterBlock ) world.getBlock( x, y, z );
-    	if ( block.getActiveBlock() == block.getIdleBlock() )
-    	{
-    		// The block only has 1 state
-    		setKeepFurnaceInventory( false );
-    		return;
-    	}
-    	
-        if (burning)
-        {
-            world.setBlock( x, y, z, block.getActiveBlock() );
-        }
-        else
-        {
-            world.setBlock( x, y, z, block.getIdleBlock() );
-        }
-
-        setKeepFurnaceInventory( false );
-        world.setBlockMetadataWithNotify( x, y, z, meta, 2 );
-
-        if ( entity != null )
-        {
-            entity.validate();
-            world.setTileEntity( x, y, z, entity );
-        }
-    }
-	
-	private static boolean getKeepFurnaceInventory()
-	{
-		try
-		{
-			Class c = BlockFurnace.class;
-			Field field = c.getDeclaredFields()[ 2 ];
-			field.setAccessible( true );
-			return ( Boolean ) field.get( null );
-		}
-		catch ( Exception exception )
-		{
-			exception.printStackTrace();
-			return false;
-		}
-	}
-	
-	private static void setKeepFurnaceInventory( boolean keep )
-	{
-		try
-		{
-			Class c = BlockFurnace.class;
-			Field field = c.getDeclaredFields()[ 2 ];
-			field.setAccessible( true );
-			field.setBoolean( null, keep );
-		}
-		catch ( Exception exception )
-		{
-			exception.printStackTrace();
-		}
-	}
-	
-	protected abstract void openGui( World world, int x, int y, int z, EntityPlayer player );
-	protected abstract Block getActiveBlock();
-	protected abstract Block getIdleBlock();
-	
-	protected final boolean active;
-	protected IIcon mainIcon;
+	protected abstract void openGui( World world, BlockPos pos, EntityPlayer player );
 }

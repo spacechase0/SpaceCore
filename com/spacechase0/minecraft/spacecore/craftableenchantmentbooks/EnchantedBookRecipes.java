@@ -3,11 +3,9 @@ package com.spacechase0.minecraft.spacecore.craftableenchantmentbooks;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagList;
@@ -37,6 +35,20 @@ public class EnchantedBookRecipes implements IRecipe
 	public ItemStack getRecipeOutput()
 	{
 		return null;
+	}
+
+	@Override
+	public ItemStack[] getRemainingItems(InventoryCrafting craftInv)
+	{
+        ItemStack[] stacks = new ItemStack[craftInv.getSizeInventory()];
+
+        for (int i = 0; i < stacks.length; ++i)
+        {
+            ItemStack itemstack = craftInv.getStackInSlot(i);
+            stacks[i] = net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack);
+        }
+
+        return stacks;
 	}
     
     private ItemStack findMatchingRecipe( InventoryCrafting inv )

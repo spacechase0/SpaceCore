@@ -5,6 +5,8 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 
 public class DummyContainer extends Container implements IInventory
 {
@@ -71,13 +73,29 @@ public class DummyContainer extends Container implements IInventory
 	}
 
 	@Override
-	public String getInventoryName()
+	public void clear()
+	{
+		for ( int i = 0; i < stacks.length; ++i )
+		{
+			stacks[ i ] = null;
+		}
+		
+	}
+
+	@Override
+	public String getName()
 	{
 		return "";
 	}
 
 	@Override
-	public boolean hasCustomInventoryName()
+	public IChatComponent getDisplayName()
+	{
+		return new ChatComponentText( "" );
+	}
+
+	@Override
+	public boolean hasCustomName()
 	{
 		return true;
 	}
@@ -100,12 +118,12 @@ public class DummyContainer extends Container implements IInventory
 	}
 
 	@Override
-	public void openInventory()
+	public void openInventory( EntityPlayer player )
 	{
 	}
 
 	@Override
-	public void closeInventory()
+	public void closeInventory( EntityPlayer player )
 	{
 	}
 
@@ -113,5 +131,22 @@ public class DummyContainer extends Container implements IInventory
 	public boolean isItemValidForSlot( int slot, ItemStack stack )
 	{
 		return true;
+	}
+
+	@Override
+	public int getField( int id )
+	{
+		return 0;
+	}
+
+	@Override
+	public void setField( int id, int value )
+	{
+	}
+
+	@Override
+	public int getFieldCount()
+	{
+		return 0;
 	}
 }

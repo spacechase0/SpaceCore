@@ -1,23 +1,11 @@
 package com.spacechase0.minecraft.spacecore.asm;
 
-import java.io.File;
-import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.commons.compress.utils.IOUtils;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.tree.AbstractInsnNode;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.InsnNode;
-import org.objectweb.asm.tree.MethodInsnNode;
-import org.objectweb.asm.tree.MethodNode;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
 
 import com.spacechase0.minecraft.spacecore.asm.obf.ObfuscationUtils;
-import com.spacechase0.minecraft.spacecore.util.FileUtils;
-
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
 
 @TransformerExclusions( value = { "com.spacechase0.minecraft.spacecore.asm" } )
 public class SpaceCorePlugin implements IFMLLoadingPlugin
@@ -33,7 +21,6 @@ public class SpaceCorePlugin implements IFMLLoadingPlugin
 			   {
 				"com.spacechase0.minecraft.spacecore.asm.block.BlockDestructionTransformer",
 				"com.spacechase0.minecraft.spacecore.asm.network.PacketInterceptTransformer",
-				"com.spacechase0.minecraft.spacecore.asm.render.TextureInterceptTransformer",
 				"com.spacechase0.minecraft.spacecore.asm.mcp.LoaderModInfoTransformer",
 				"com.spacechase0.minecraft.spacecore.asm.mod.ModInitTransformer",
 				//"com.spacechase0.minecraft.spacecore.asm.config.AutoConfigTransformer",

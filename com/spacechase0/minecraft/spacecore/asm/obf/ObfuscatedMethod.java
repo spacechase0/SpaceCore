@@ -1,11 +1,5 @@
 package com.spacechase0.minecraft.spacecore.asm.obf;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
-import com.spacechase0.minecraft.spacecore.asm.SpaceCoreLog;
-
-import cpw.mods.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 
 public class ObfuscatedMethod
 {

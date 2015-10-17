@@ -4,9 +4,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.spacechase0.minecraft.spacecore.SpaceCore;
-import com.spacechase0.minecraft.spacecore.asm.SpaceCoreLog;
-
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -17,6 +14,9 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import com.spacechase0.minecraft.spacecore.SpaceCore;
+import com.spacechase0.minecraft.spacecore.asm.SpaceCoreLog;
 
 public class RecipeSimplifier
 {

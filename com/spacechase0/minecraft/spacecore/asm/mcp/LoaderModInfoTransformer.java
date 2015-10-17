@@ -30,7 +30,7 @@ public class LoaderModInfoTransformer implements IClassTransformer
     
     public byte[] transform( String name, String transformedName, byte[] bytes )
     {
-    	if ( bytes == null || ObfuscationUtils.isRuntimeDeobfuscated() || !transformedName.equals( "cpw.mods.fml.common.Loader" ) )
+    	if ( bytes == null || ObfuscationUtils.isRuntimeDeobfuscated() || !transformedName.equals( "net.minecraftforge.fml.common.Loader" ) )
     	{
     		return bytes;
     	}

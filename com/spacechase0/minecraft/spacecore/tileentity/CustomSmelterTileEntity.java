@@ -5,15 +5,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 
 import com.spacechase0.minecraft.spacecore.block.CustomSmelterBlock;
 
-public abstract class CustomSmelterTileEntity extends TileEntity implements IInventory
+public abstract class CustomSmelterTileEntity extends TileEntity implements IInventory, IUpdatePlayerListBox
 {
 	@Override
-	public void updateEntity()
+	public void update()
 	{
 		int oldProgress = progressNeeded;
 		updateProgressNeeded();
@@ -21,17 +22,17 @@ public abstract class CustomSmelterTileEntity extends TileEntity implements IInv
 		{
 			// Hope this works
 			markDirty(); // onInventoryChanged?
-			worldObj.markBlockForUpdate( xCoord, yCoord, zCoord );
+			worldObj.markBlockForUpdate( pos );
 		}
 		
 		if ( progressNeeded > 0 && burnTimeLeft <= 0 && getStackInSlot( getFuelSlot() ) != null )
 		{
 			burnTimeTotal = burnTimeLeft = TileEntityFurnace.getItemBurnTime( getStackInSlot( getFuelSlot() ) );
 			decrStackSize( getFuelSlot(), 1 );
-			setBurnState( true );
+			//setBurnState( true );
 			
 			markDirty(); // onInventoryChanged?
-			worldObj.markBlockForUpdate( xCoord, yCoord, zCoord );
+			worldObj.markBlockForUpdate( pos );
 		}
 		
 		if ( burnTimeLeft > 0 )
@@ -39,7 +40,7 @@ public abstract class CustomSmelterTileEntity extends TileEntity implements IInv
 			--burnTimeLeft;
 			if ( burnTimeLeft <= 0 )
 			{
-				setBurnState( false );
+				//setBurnState( false );
 			}
 			
 			if ( progressNeeded > 0 )
@@ -59,7 +60,7 @@ public abstract class CustomSmelterTileEntity extends TileEntity implements IInv
 			progressAmount = 0;
 
 			markDirty(); // onInventoryChanged?
-			worldObj.markBlockForUpdate( xCoord, yCoord, zCoord );
+			worldObj.markBlockForUpdate( pos );
 		}
 	}
 	
@@ -90,7 +91,7 @@ public abstract class CustomSmelterTileEntity extends TileEntity implements IInv
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         this.writeToNBT(nbttagcompound);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, -1, nbttagcompound);
+        return new S35PacketUpdateTileEntity(pos, -1, nbttagcompound);
     }
     
     @Override
@@ -98,7 +99,7 @@ public abstract class CustomSmelterTileEntity extends TileEntity implements IInv
     {
     	if ( worldObj.isRemote )
     	{
-    		readFromNBT( pkt.func_148857_g() );
+    		readFromNBT( pkt.getNbtCompound() );
     	}
     }
     
@@ -141,12 +142,12 @@ public abstract class CustomSmelterTileEntity extends TileEntity implements IInv
 		progressAmount = theProgressAmount;
 	}
     
-    protected void setBurnState( boolean burning )
+    /*protected void setBurnState( boolean burning )
     {
-    	getBlock().updateBlockState( burning, worldObj, xCoord, yCoord, zCoord );
+    	getBlock().updateBlockState( burning, worldObj, pos );
     }
     
-    protected abstract CustomSmelterBlock getBlock();
+    protected abstract CustomSmelterBlock getBlock();*/
     
     public abstract int getFuelSlot();
     

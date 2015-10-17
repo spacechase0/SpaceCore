@@ -1,18 +1,13 @@
 package com.spacechase0.minecraft.spacecore.block;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
-import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import com.spacechase0.minecraft.spacecore.BaseMod;
-import com.spacechase0.minecraft.spacecore.asm.SpaceCoreLog;
 import com.spacechase0.minecraft.spacecore.util.AutoRegister;
 import com.spacechase0.minecraft.spacecore.util.ModObject;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public abstract class Blocks extends AutoRegister
 {

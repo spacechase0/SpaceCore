@@ -66,7 +66,7 @@ public class AutoConfigTransformer implements IClassTransformer
         while ( it.hasNext() )
         {
         	AnnotationNode annot = it.next();
-        	if ( annot.desc.equals( "Lcpw/mods/fml/common/Mod;" ) )
+        	if ( annot.desc.equals( "Lnet/minecraftforge/fml/common/Mod;" ) )
         	{
         		// TODO: Check for existing value
         		

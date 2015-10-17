@@ -19,7 +19,7 @@ public class PlayerUtils
 		
 		if ( !persist.hasKey( checkTag ) )
 		{
-			SpaceCoreLog.severe( player.getCommandSenderName() + " has not yet " + checkTag + ", giving " + stack );
+			SpaceCoreLog.severe( player.getName() + " has not yet " + checkTag + ", giving " + stack );
 			player.inventory.addItemStackToInventory( stack.copy() );
 			persist.setBoolean( checkTag, true );
 		}

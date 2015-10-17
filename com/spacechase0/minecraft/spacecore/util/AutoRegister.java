@@ -3,13 +3,10 @@ package com.spacechase0.minecraft.spacecore.util;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 
+import net.minecraftforge.common.config.Configuration;
+
 import com.spacechase0.minecraft.spacecore.BaseMod;
 import com.spacechase0.minecraft.spacecore.asm.SpaceCoreLog;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-
-import net.minecraft.block.Block;
-import net.minecraftforge.common.config.Configuration;
 
 public abstract class AutoRegister
 {
